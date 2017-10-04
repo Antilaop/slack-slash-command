@@ -8,7 +8,7 @@ server.post('/', function (req, res) {
     res.status(200).json({text: "jee"});
 });
 
-server.get('/jee', function (req, res) {
+server.post('/jee', function (req, res) {
     res.status(200).json({
         "attachments": [
             {
