@@ -5,7 +5,7 @@ var http = require('http');
 var server = express();
 
 server.post('/', function (req, res) {
-    res.status(200).json({text: "jee"});
+    res.status(200).json({ok: "true"});
 });
 
 server.post('/jee', function (req, res) {
