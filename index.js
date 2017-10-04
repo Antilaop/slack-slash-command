@@ -4,12 +4,12 @@ var http = require('http');
 
 var server = express();
 
-server.get('/', function (req, res) {
+server.post('/', function (req, res) {
     res.status(200).json({text: "jee"});
 });
 
 server.get('/jee', function (req, res) {
-    res.json({
+    res.status(200).json({
         "attachments": [
             {
                 "fallback": "Required plain-text summary of the attachment.",
