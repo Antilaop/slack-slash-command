@@ -5,7 +5,17 @@ var http = require('http');
 var server = express();
 
 server.post('/', function (req, res) {
-    res.status(200).json({ok: "true"});
+    res.status(200).json({ok: "true", "attachments": [
+        {
+            "fallback": "Required plain-text summary of the attachment.",
+            "color": "#36a64f",
+            "title": "Slack API Documentation",
+            "title_link": "https://api.slack.com/",
+            "footer": "Slack API",
+            "footer_icon": "https://platform.slack-edge.com/img/default_application_icon.png",
+            "ts": 123456789
+        }
+    ]});
 });
 
 server.post('/jee', function (req, res) {
