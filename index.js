@@ -28,7 +28,7 @@ server.post('/', function (req, res) {
 server.post('/', function (req, res) {
     res.contentType('application/json');
     console.log(req.body);
-    res.status(200).json({ok: "true", text: "testki"});
+    res.status(200).json({ok: "true", text: req.body});
 });
 
 server.post('/jee', function (req, res) {
