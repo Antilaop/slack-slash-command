@@ -8,6 +8,10 @@
     "engines": {
         "node": ">=6.9.1"
     },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Antilaop/ATBot-slackapi.git"
+    },
     "scripts": {
         "start": "node index.js"
     }
