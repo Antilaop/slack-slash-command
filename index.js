@@ -15,21 +15,29 @@ server.post('/', upload.array(), function (req, res) {
     var regexArray = regex.exec(req.body.text);
     timeStamp = Math.round(new Date().getTime()/1000);
     if(regexArray){
+        var resData = {};
+        var resAttachments = regexArray[i];
+        resData[resAttachments] = [];
+        var resDataInit = {
+            "response_type": "in_channel",
+        }
+        resData[resAttachments].push(resDataInit);
+        
         for(var i=0; j=regexArray.length,i<j; i++){
-            var resData = {};
-            var resAttachments = regexArray[i];
-            resData[resAttachments] = [];
-
             var ticketLink = "https://ww4.autotask.net/Autotask/AutotaskExtend/ExecuteCommand.aspx?Code=OpenTicketDetail&TicketNumber=" + regexArray[i];
             
             var resAttachmentsData = {
-                "fallback": "Required plain-text summary of the attachment.",
-                "color": "#36a64f",
-                "title": regexArray[i],
-                "title_link": ticketLink,
-                "footer": "Slack API",
-                "footer_icon": "https://platform.slack-edge.com/img/default_application_icon.png",
-                "ts": timeStamp
+                "attachments": [
+                    {
+                    "fallback": "Required plain-text summary of the attachment.",
+                    "color": "#36a64f",
+                    "title": regexArray[i],
+                    "title_link": ticketLink,
+                    "footer": "Slack API",
+                    "footer_icon": "https://platform.slack-edge.com/img/default_application_icon.png",
+                    "ts": timeStamp
+                    }
+                ]
             }
 
             resData[resAttachments].push(resAttachmentsData);
