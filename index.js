@@ -42,7 +42,7 @@ server.post('/', upload.array(), function (req, res) {
                     {
                         "fallback": "Required plain-text summary of the attachment.",
                         "color": "#36a64f",
-                        "title": req.body.text,
+                        "title": req.body.text[4],
                         "title_link": ticketLink,
                         "footer": "Slack API",
                         "footer_icon": "https://platform.slack-edge.com/img/default_application_icon.png",
