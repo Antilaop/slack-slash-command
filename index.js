@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var multer = require('multer'); // v1.0.5
 var upload = multer(); // for parsing multipart/form-data
 
-//server.use(bodyParser.json()); // for parsing application/json
+// server.use(bodyParser.json()); // for parsing application/json
 server.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 /*
@@ -27,8 +27,8 @@ server.post('/', function (req, res) {
 
 server.post('/', upload.array(), function (req, res) {
     res.contentType('application/json');
-    console.log(req.body);
-    res.status(200).json({ok: "true", text: req.body});
+    //console.log(req.body);
+    res.status(200).json({ok: "true"});
 });
 
 server.post('/jee', function (req, res) {
