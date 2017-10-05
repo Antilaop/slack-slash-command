@@ -27,9 +27,13 @@ server.post('/', function (req, res) {
 
 server.post('/', upload.array(), function (req, res) {
     //console.log(req);    
-    //res.contentType('application/json');
-    res.status(200);
-    res.send("<https://ww4.autotask.net/Autotask/AutotaskExtend/ExecuteCommand.aspx?Code=OpenTicketDetail&TicketNumber=T20171005.0006|jT20171005.0006>");    
+    //res.contentType('text/html');
+    //res.status(200);
+    console.log(req.get('content-type'));
+    console.log(req.get('response_url'));
+    
+    res.send(req.get('content-type'));  
+    
     /*
     var regex = /T20\d{6}\.\d{4}/g;
     var str = req.body;
