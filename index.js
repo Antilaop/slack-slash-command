@@ -13,6 +13,8 @@ server.use(bodyParser.urlencoded({ extended: true })); // for parsing applicatio
 server.post('/', upload.array(), function (req, res) {
     var regex = /T20\d{6}\.\d{4}/g;
     var regexArray = regex.exec(req.body.text);
+    timeStamp = new Date().getTime();
+    console.log(timeStamp);
     if(regexArray){
         for(var i=0; j=regexArray.length,i<j; i++){
             var ticketLink = "https://ww4.autotask.net/Autotask/AutotaskExtend/ExecuteCommand.aspx?Code=OpenTicketDetail&TicketNumber=" + regexArray[i];
@@ -25,7 +27,7 @@ server.post('/', upload.array(), function (req, res) {
                         "title_link": ticketLink,
                         "footer": "Slack API",
                         "footer_icon": "https://platform.slack-edge.com/img/default_application_icon.png",
-                        "ts": 123456789
+                        "ts": timeStamp
                     }
                 ]
             });
