@@ -32,7 +32,7 @@ server.post('/', upload.array(), function (req, res) {
     console.log(req.get('content-type'));
     console.log(req.get('response_url'));
     
-    res.send(req.body.response_url);  
+    res.send(req.body.text);  
     
     /*
     var regex = /T20\d{6}\.\d{4}/g;
