@@ -36,12 +36,24 @@ server.post('/', upload.array(), function (req, res) {
     } else {
         res.status(200).json(
             {
-                "response_type": "ephemeral",
-                "text": "Sorry, that didn't work. Please try again."
+                "response_type": "in_channel",
+                "text": "It's 80 degrees right now.",
+                "attachments": [
+                    {
+                        "text":"Partly cloudy today and tomorrow"
+                    }
+                ]
             }
         );
     }    
 });
+
+/*
+            {
+                "response_type": "ephemeral",
+                "text": "Sorry, that didn't work. Please try again."
+            }
+            */
 
 var port = process.env.PORT || 1337;
 server.listen(port);
