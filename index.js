@@ -13,7 +13,7 @@ server.use(bodyParser.urlencoded({ extended: true })); // for parsing applicatio
 server.post('/', upload.array(), function (req, res) {
     var regex = /T20\d{6}\.\d{4}/g;
     var regexArray = regex.exec(req.body.text);
-    timeStamp = new Date().getTime();
+    timeStamp = Math.round(new Date().getTime()/1000);
     console.log(timeStamp);
     if(regexArray){
         for(var i=0; j=regexArray.length,i<j; i++){
