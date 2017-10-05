@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var multer = require('multer'); // v1.0.5
 var upload = multer(); // for parsing multipart/form-data
 
-// server.use(bodyParser.json()); // for parsing application/json
+server.use(bodyParser.json()); // for parsing application/json
 server.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 /*
@@ -27,11 +27,34 @@ server.post('/', function (req, res) {
 
 server.post('/', upload.array(), function (req, res) {
     res.contentType('application/json');
-    //console.log(req.body);
-    res.status(200).json({ok: "true"});
+    res.status(200).json(req.body);
+
+    /*
+    var regex = /T20\d{6}\.\d{4}/g;
+    var str = req.body;
+    JSON.stringify(str);
+    console.log(str);
+    var regexArray = str.match(regex);
+    console.log(regexArray);
+    if(regexArray){
+        for(var i=0; j=regexArray.length,i<j; i++){
+            res.send("<https://ww4.autotask.net/Autotask/AutotaskExtend/ExecuteCommand.aspx?Code=OpenTicketDetail&TicketNumber=%s|%s>",  regexArray[i], regexArray[i]);
+        }
+    } */
 });
 
-server.post('/jee', function (req, res) {
+/*
+    var regex = /T20\d{6}\.\d{4}/g;
+    var str = session.message.text;
+    var regexArray = str.match(regex);
+    if(regexArray){
+        for(var i=0; j=regexArray.length,i<j; i++){
+            session.send("<https://ww4.autotask.net/Autotask/AutotaskExtend/ExecuteCommand.aspx?Code=OpenTicketDetail&TicketNumber=%s|%s>",  regexArray[i], regexArray[i]);
+        }
+    } 
+    */
+
+server.post('/jee', function (req, res) {   
     res.status(200).json({
         "attachments": [
             {
