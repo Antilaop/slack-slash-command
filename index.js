@@ -23,7 +23,7 @@ server.post('/', upload.array(), function (req, res) {
                     {
                         "response_type": "in_channel",
                         "fallback": "Required plain-text summary of the attachment.",
-                        "color": "#36a64f",
+                        "color": "#36a65f",
                         "title": req.body.text,
                         "title_link": ticketLink,
                         "footer": "Slack API",
