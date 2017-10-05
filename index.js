@@ -19,9 +19,9 @@ server.post('/', upload.array(), function (req, res) {
         for(var i=0; j=regexArray.length,i<j; i++){
             var ticketLink = "https://ww4.autotask.net/Autotask/AutotaskExtend/ExecuteCommand.aspx?Code=OpenTicketDetail&TicketNumber=" + regexArray[i];
             res.status(200).json({
+                "response_type": "in_channel",
                 "attachments": [
                     {
-                        "response_type": "in_channel",
                         "fallback": "Required plain-text summary of the attachment.",
                         "color": "#36a65f",
                         "title": req.body.text,
@@ -36,24 +36,12 @@ server.post('/', upload.array(), function (req, res) {
     } else {
         res.status(200).json(
             {
-                "response_type": "in_channel",
-                "text": "It's 80 degrees right now.",
-                "attachments": [
-                    {
-                        "text":"Partly cloudy today and tomorrow"
-                    }
-                ]
+                "response_type": "ephemeral",
+                "text": "Sorry, that didn't work. Please try again."
             }
         );
     }    
 });
-
-/*
-            {
-                "response_type": "ephemeral",
-                "text": "Sorry, that didn't work. Please try again."
-            }
-            */
 
 var port = process.env.PORT || 1337;
 server.listen(port);
