@@ -34,7 +34,12 @@ server.post('/', upload.array(), function (req, res) {
             });
         }
     } else {
-        res.send(req.body.text);
+        res.status(200).json(
+            {
+                "response_type": "ephemeral",
+                "text": "Sorry, that didn't work. Please try again."
+            }
+        );
     }    
 });
 
