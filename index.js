@@ -14,7 +14,6 @@ server.post('/', upload.array(), function (req, res) {
     var regex = /T20\d{6}\.\d{4}/g;
     var regexArray = regex.exec(req.body.text);
     resTS = Math.round(new Date().getTime()/1000);
-    console.log(timeStamp);
     if(regexArray){
         for(var i=0; j=regexArray.length,i<j; i++){
             var resLink = "https://ww4.autotask.net/Autotask/AutotaskExtend/ExecuteCommand.aspx?Code=OpenTicketDetail&TicketNumber=" + regexArray[i];
@@ -24,7 +23,7 @@ server.post('/', upload.array(), function (req, res) {
             } else {
                 resTitle = req.resume.body.text;
             }
-            
+
             res.status(200).json({
                 "response_type": "in_channel",
                 "attachments": [
