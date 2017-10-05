@@ -36,13 +36,14 @@ server.post('/', upload.array(), function (req, res) {
     var regexArray = regex.exec(req.body.text);
     if(regexArray){
         for(var i=0; j=regexArray.length,i<j; i++){
+            var ticketLink = "https://ww4.autotask.net/Autotask/AutotaskExtend/ExecuteCommand.aspx?Code=OpenTicketDetail&TicketNumber=" + regexArray[i] + "|" + regexArray[i];
             res.status(200).json({
                 "attachments": [
                     {
                         "fallback": "Required plain-text summary of the attachment.",
                         "color": "#36a64f",
                         "title": "Slack API Documentation",
-                        "title_link": "https://api.slack.com/",
+                        "title_link": ticketLink,
                         "footer": "Slack API",
                         "footer_icon": "https://platform.slack-edge.com/img/default_application_icon.png",
                         "ts": 123456789
