@@ -31,21 +31,19 @@ server.post('/', upload.array(), function (req, res) {
     //res.status(200);
     console.log(req.get('content-type'));
     console.log(req.get('response_url'));
-    
-    res.send(req.body.text);  
-    
-    /*
+        
     var regex = /T20\d{6}\.\d{4}/g;
-    var str = req.body;
-    JSON.stringify(str);
-    console.log(str);
-    var regexArray = str.match(regex);
-    console.log(regexArray);
+    var regexArray = regex.exec(req.body.text);
     if(regexArray){
         for(var i=0; j=regexArray.length,i<j; i++){
             res.send("<https://ww4.autotask.net/Autotask/AutotaskExtend/ExecuteCommand.aspx?Code=OpenTicketDetail&TicketNumber=%s|%s>",  regexArray[i], regexArray[i]);
         }
-    } */
+    } else {
+        res.send(req.body.text);
+    }
+
+    //res.send(req.body.text);  
+    
 });
 
 /*
