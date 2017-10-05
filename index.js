@@ -36,7 +36,20 @@ server.post('/', upload.array(), function (req, res) {
     var regexArray = regex.exec(req.body.text);
     if(regexArray){
         for(var i=0; j=regexArray.length,i<j; i++){
-            res.send("<https://ww4.autotask.net/Autotask/AutotaskExtend/ExecuteCommand.aspx?Code=OpenTicketDetail&TicketNumber=%s|%s>",  regexArray[i], regexArray[i]);
+            res.status(200).json({
+                "attachments": [
+                    {
+                        "fallback": "Required plain-text summary of the attachment.",
+                        "color": "#36a64f",
+                        "title": "Slack API Documentation",
+                        "title_link": "https://api.slack.com/",
+                        "footer": "Slack API",
+                        "footer_icon": "https://platform.slack-edge.com/img/default_application_icon.png",
+                        "ts": 123456789
+                    }
+                ]
+            });
+            //res.send("<https://ww4.autotask.net/Autotask/AutotaskExtend/ExecuteCommand.aspx?Code=OpenTicketDetail&TicketNumber=%s|%s>",  regexArray[i], regexArray[i]);
         }
     } else {
         res.send(req.body.text);
