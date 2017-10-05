@@ -26,12 +26,6 @@ server.post('/', function (req, res) {
 });*/
 
 server.post('/', upload.array(), function (req, res) {
-    //console.log(req);    
-    //res.contentType('text/html');
-    //res.status(200);
-    console.log(req.get('content-type'));
-    console.log(req.get('response_url'));
-        
     var regex = /T20\d{6}\.\d{4}/g;
     var regexArray = regex.exec(req.body.text);
     if(regexArray){
@@ -42,7 +36,7 @@ server.post('/', upload.array(), function (req, res) {
                     {
                         "fallback": "Required plain-text summary of the attachment.",
                         "color": "#36a64f",
-                        "title": req.body.text[4],
+                        "title": req.body.text << 2,
                         "title_link": ticketLink,
                         "footer": "Slack API",
                         "footer_icon": "https://platform.slack-edge.com/img/default_application_icon.png",
@@ -50,14 +44,10 @@ server.post('/', upload.array(), function (req, res) {
                     }
                 ]
             });
-            //res.send("<https://ww4.autotask.net/Autotask/AutotaskExtend/ExecuteCommand.aspx?Code=OpenTicketDetail&TicketNumber=%s|%s>",  regexArray[i], regexArray[i]);
         }
     } else {
         res.send(req.body.text);
-    }
-
-    //res.send(req.body.text);  
-    
+    }    
 });
 
 /*
