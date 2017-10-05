@@ -17,20 +17,13 @@ server.post('/', upload.array(), function (req, res) {
     console.log(timeStamp);
     if(regexArray){
         for(var i=0; j=regexArray.length,i<j; i++){
-
-            if(regexArray>1) {
-                var resTitle = regexArray[i];
-            } else {
-                resTitle = req.body.text;
-            }
-
             var ticketLink = "https://ww4.autotask.net/Autotask/AutotaskExtend/ExecuteCommand.aspx?Code=OpenTicketDetail&TicketNumber=" + regexArray[i];
             res.status(200).json({
                 "response_type": "in_channel",
                 "attachments": [
                     {
                         "fallback": "Required plain-text summary of the attachment.",
-                        "color": "#36a65f",
+                        "color": "#36a64f",
                         "title": resTitle,
                         "title_link": ticketLink,
                         "footer": "Slack API",
