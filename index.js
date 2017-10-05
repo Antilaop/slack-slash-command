@@ -10,28 +10,7 @@ var upload = multer(); // for parsing multipart/form-data
 server.use(bodyParser.json()); // for parsing application/json
 server.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-/*
-server.post('/', function (req, res) {
-    res.status(200).json({ok: "true", "attachments": [
-        {
-            "fallback": "Required plain-text summary of the attachment.",
-            "color": "#36a64f",
-            "title": "Slack API Documentation",
-            "title_link": "https://api.slack.com/",
-            "footer": "Slack API",
-            "footer_icon": "https://platform.slack-edge.com/img/default_application_icon.png",
-            "ts": 123456789
-        }
-    ]});
-});*/
-
 server.post('/', upload.array(), function (req, res) {
-    //console.log(req);    
-    //res.contentType('text/html');
-    //res.status(200);
-    console.log(req.get('content-type'));
-    console.log(req.get('response_url'));
-        
     var regex = /T20\d{6}\.\d{4}/g;
     var regexArray = regex.exec(req.body.text);
     if(regexArray){
@@ -50,14 +29,10 @@ server.post('/', upload.array(), function (req, res) {
                     }
                 ]
             });
-            //res.send("<https://ww4.autotask.net/Autotask/AutotaskExtend/ExecuteCommand.aspx?Code=OpenTicketDetail&TicketNumber=%s|%s>",  regexArray[i], regexArray[i]);
         }
     } else {
         res.send(req.body.text);
-    }
-
-    //res.send(req.body.text);  
-    
+    }    
 });
 
 var port = process.env.PORT || 1337;
