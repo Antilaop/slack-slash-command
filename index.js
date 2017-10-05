@@ -13,11 +13,18 @@ server.use(bodyParser.urlencoded({ extended: true })); // for parsing applicatio
 server.post('/', upload.array(), function (req, res) {
     var regex = /T20\d{6}\.\d{4}/g;
     var regexArray = regex.exec(req.body.text);
-    timeStamp = Math.round(new Date().getTime()/1000);
+    resTS = Math.round(new Date().getTime()/1000);
     console.log(timeStamp);
     if(regexArray){
         for(var i=0; j=regexArray.length,i<j; i++){
-            var ticketLink = "https://ww4.autotask.net/Autotask/AutotaskExtend/ExecuteCommand.aspx?Code=OpenTicketDetail&TicketNumber=" + regexArray[i];
+            var resLink = "https://ww4.autotask.net/Autotask/AutotaskExtend/ExecuteCommand.aspx?Code=OpenTicketDetail&TicketNumber=" + regexArray[i];
+            
+            if(regexArray>1) {
+                var resTitle = regexArray[i];
+            } else {
+                resTitle = req.resume.body.text;
+            }
+            
             res.status(200).json({
                 "response_type": "in_channel",
                 "attachments": [
@@ -25,10 +32,10 @@ server.post('/', upload.array(), function (req, res) {
                         "fallback": "Required plain-text summary of the attachment.",
                         "color": "#36a65f",
                         "title": req.body.text,
-                        "title_link": ticketLink,
+                        "title_link": resLink,
                         "footer": "Slack API",
                         "footer_icon": "https://platform.slack-edge.com/img/default_application_icon.png",
-                        "ts": timeStamp
+                        "ts": resTS
                     }
                 ]
             });
