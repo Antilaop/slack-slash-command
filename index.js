@@ -27,8 +27,8 @@ server.post('/', function (req, res) {
 
 server.post('/', upload.array(), function (req, res) {
     console.log(req);    
-    res.contentType('application/json');
-    res.status(200).json(req.body);
+    //res.contentType('application/json');
+    res.status(200).json(req);
 
     /*
     var regex = /T20\d{6}\.\d{4}/g;
