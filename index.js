@@ -21,6 +21,7 @@ server.post('/', upload.array(), function (req, res) {
             res.status(200).json({
                 "attachments": [
                     {
+                        "response_type": "in_channel",
                         "fallback": "Required plain-text summary of the attachment.",
                         "color": "#36a64f",
                         "title": req.body.text,
