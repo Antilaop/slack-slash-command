@@ -14,7 +14,7 @@ server.post('/', upload.array(), function (req, res) {
     var regex = /T20\d{6}\.\d{4}/g;
     var regexArray = regex.exec(req.body.text);
     timeStamp = Math.round(new Date().getTime()/1000);
-    if(regexArray){
+    if((regexArray) && (req.body.token == process.env.SLACK_TOKEN)){
         var ticketLink = "https://ww4.autotask.net/Autotask/AutotaskExtend/ExecuteCommand.aspx?Code=OpenTicketDetail&TicketNumber=" + regexArray[0];
         var resTitle = req.body.text.replace('-','');
         res.status(200).json({
@@ -23,7 +23,7 @@ server.post('/', upload.array(), function (req, res) {
                 {
                     "fallback": "Required plain-text summary of the attachment.",
                     "color": "#36a65f",
-                    "title": req.body.token, //resTitle,
+                    "title": resTitle,
                     "title_link": ticketLink,
                     "footer": "Slack API",
                     "footer_icon": "https://platform.slack-edge.com/img/default_application_icon.png",
