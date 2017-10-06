@@ -18,13 +18,15 @@ server.post('/', upload.array(), function (req, res) {
     if(regexArray){
         for(var i=0; j=regexArray.length,i<j; i++){
             var ticketLink = "https://ww4.autotask.net/Autotask/AutotaskExtend/ExecuteCommand.aspx?Code=OpenTicketDetail&TicketNumber=" + regexArray[i];
+            //mystring = mystring.replace(/\/r/g, '/');
+            var resTitle = req.body.text.replace('-','');
             res.status(200).json({
                 "response_type": "in_channel",
                 "attachments": [
                     {
                         "fallback": "Required plain-text summary of the attachment.",
                         "color": "#36a65f",
-                        "title": req.body.text,
+                        "title": resTitle,
                         "title_link": ticketLink,
                         "footer": "Slack API",
                         "footer_icon": "https://platform.slack-edge.com/img/default_application_icon.png",
@@ -37,7 +39,7 @@ server.post('/', upload.array(), function (req, res) {
         res.status(200).json(
             {
                 "response_type": "ephemeral",
-                "text": "Sorry, that didn't work. \n Try '/ticket [TICKET_NUMBER] [TICKET DESCRIPTION]"
+                "text": "Sorry, that didn't work. \n Try '/ticket [TICKET_NUMBER] [TICKET DESCRIPTION]f"
             }
         );
     }    
