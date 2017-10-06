@@ -1,16 +1,16 @@
 {
-  "name": "app-service-hello-world",
-  "description": "Simple Hello World Node.js sample for Azure App Service",
+  "name": "slack-slash-command",
+  "description": "Yksinkertainen kikkare käsittelemään slackin slash-komentojen lähettämää dataa",
   "version": "0.0.1",
-  "private": true,
+  "private": false,
   "license": "MIT",
-  "author": "Microsoft",
+  "author": "Antilaop",
   "engines": {
     "node": ">=6.9.1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Antilaop/ATBot-slackapi.git"
+    "url": "git+https://github.com/Antilaop/slack-slash-command.git"
   },
   "scripts": {
     "start": "node index.js"
