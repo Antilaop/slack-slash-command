@@ -14,8 +14,7 @@ server.post('/', upload.array(), function (req, res) {
     var regex = /T20\d{6}\.\d{4}/g;
     var regexArray = regex.exec(req.body.text);
     timeStamp = Math.round(new Date().getTime()/1000);
-    console.log(timeStamp);
-    if(regexArray){
+    if(regexArray && body.req.token == process.env.SLACK_TOKEN){
         var ticketLink = "https://ww4.autotask.net/Autotask/AutotaskExtend/ExecuteCommand.aspx?Code=OpenTicketDetail&TicketNumber=" + regexArray[0];
         var resTitle = req.body.text.replace('-','');
         res.status(200).json({
