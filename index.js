@@ -11,33 +11,42 @@ server.use(bodyParser.json()); // for parsing application/json
 server.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 server.post('/', upload.array(), function (req, res) {
-    var regex = /T20\d{6}\.\d{4}/g;
-    var regexArray = regex.exec(req.body.text);
-    timeStamp = Math.round(new Date().getTime()/1000);
-    if((regexArray) && (req.body.token == process.env.SLACK_TOKEN)){
-        var ticketLink = "https://ww4.autotask.net/Autotask/AutotaskExtend/ExecuteCommand.aspx?Code=OpenTicketDetail&TicketNumber=" + regexArray[0];
-        var resTitle = req.body.text.replace('-','');
-        res.status(200).json({
-            "response_type": "in_channel",
-            "attachments": [
+    if (req.body.token == process.env.SLACK_TOKEN) {
+        var regex = /T20\d{6}\.\d{4}/g;
+        var regexArray = regex.exec(req.body.text);
+        timeStamp = Math.round(new Date().getTime()/1000); //no mitähän vittua
+        if(regexArray){
+            var ticketLink = "https://ww4.autotask.net/Autotask/AutotaskExtend/ExecuteCommand.aspx?Code=OpenTicketDetail&TicketNumber=" + regexArray[0];
+            var resTitle = req.body.text.replace('-','');
+            res.status(200).json({
+                "response_type": "in_channel",
+                "attachments": [
+                    {
+                        "fallback": "Required plain-text summary of the attachment.",
+                        "color": "#36a65f",
+                        "title": resTitle,
+                        "title_link": ticketLink,
+                        "footer": "Slack API",
+                        "footer_icon": "https://platform.slack-edge.com/img/default_application_icon.png",
+                        "ts": timeStamp
+                    }
+                ]
+            });
+        } else {
+            res.status(200).json(
                 {
-                    "fallback": "Required plain-text summary of the attachment.",
-                    "color": "#36a65f",
-                    "title": resTitle,
-                    "title_link": ticketLink,
-                    "footer": "Slack API",
-                    "footer_icon": "https://platform.slack-edge.com/img/default_application_icon.png",
-                    "ts": timeStamp
+                    "response_type": "ephemeral",
+                    "text": "Sorry, that didn't work. \n Try '/ticket [TICKET_NUMBER] [TICKET DESCRIPTION]"
                 }
-            ]
-        });
+            );
+        }
     } else {
-        res.status(200).json(
+        res.status(401).json(
             {
-                "response_type": "ephemeral",
-                "text": "Sorry, that didn't work. \n Try '/ticket [TICKET_NUMBER] [TICKET DESCRIPTION]"
+                "response_type": "emhemeral",
+                "text": "Authentication is required. Entero somewhere elso."
             }
-        );
+        )
     }    
 });
 
