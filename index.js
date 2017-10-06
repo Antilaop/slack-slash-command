@@ -27,7 +27,7 @@ server.post('/', upload.array(), function (req, res) {
                         "title": resTitle,
                         "title_link": ticketLink,
                         "footer": "Kikkare",
-                        "footer_icon": "https://www.colourbox.com/preview/7508808-big-like-icon.jpg",
+                        "footer_icon": "http://www.clker.com/cliparts/c/8/f/8/11949865511933397169thumbs_up_nathan_eady_01.svg.hi.png",
                         "ts": timeStamp
                     }
                 ]
