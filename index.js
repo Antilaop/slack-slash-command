@@ -36,14 +36,14 @@ server.post('/', upload.array(), function (req, res) {
             res.status(200).json(
                 {
                     "response_type": "ephemeral",
-                    "text": "Sorry, that didn't work. \n Try '/ticket [TICKET_NUMBER] [TICKET DESCRIPTION]"
+                    "text": "Sorry, that didn't work. \n Try: /ticket [TICKET_NUMBER] [TICKET DESCRIPTION]"
                 }
             );
         }
     } else {
         res.status(401).json(
             {
-                "response_type": "emhemeral",
+                "response_type": "ephemeral",
                 "text": "Authentication is required. Entero somewhere elso."
             }
         )
