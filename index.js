@@ -37,7 +37,7 @@ server.post('/', upload.array(), function (req, res) {
         res.status(200).json(
             {
                 "response_type": "ephemeral",
-                "text": "Sorry, that didn't work.\n Try '/ticket [TICKET_NUMBER] [DESCRIPTION]"
+                "text": "Sorry, that didn't work. Please try again."
             }
         );
     }    
