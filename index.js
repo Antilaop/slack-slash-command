@@ -20,7 +20,7 @@ server.post('/', upload.array(), function (req, res) {
         var resDataInit = {
             "response_type": "in_channel"
         }
-        resData[regexArray[i]].push(resDataInit);
+        resData[].push(resDataInit);
         
         for(var i=0; j=regexArray.length,i<j; i++){
             var ticketLink = "https://ww4.autotask.net/Autotask/AutotaskExtend/ExecuteCommand.aspx?Code=OpenTicketDetail&TicketNumber=" + regexArray[i];
