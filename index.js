@@ -16,12 +16,11 @@ server.post('/', upload.array(), function (req, res) {
     timeStamp = Math.round(new Date().getTime()/1000);
     if(regexArray){
         var resData = {};
-        var resAttachments = regexArray[i];
-        resData[resAttachments] = [];
+        resData[regexArray[i]] = [];
         var resDataInit = {
-            "response_type": "in_channel",
+            "response_type": "in_channel"
         }
-        resData[resAttachments].push(resDataInit);
+        resData[regexArray[i]].push(resDataInit);
         
         for(var i=0; j=regexArray.length,i<j; i++){
             var ticketLink = "https://ww4.autotask.net/Autotask/AutotaskExtend/ExecuteCommand.aspx?Code=OpenTicketDetail&TicketNumber=" + regexArray[i];
