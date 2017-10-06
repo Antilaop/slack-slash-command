@@ -27,7 +27,7 @@ server.post('/', upload.array(), function (req, res) {
                         "title": resTitle,
                         "title_link": ticketLink,
                         "footer": "Kikkare",
-                        "footer_icon": "http://icons.iconarchive.com/icons/iconsmind/outline/512/Geek-2-icon.png",
+                        "footer_icon": "https://www.colourbox.com/preview/7508808-big-like-icon.jpg",
                         "ts": timeStamp
                     }
                 ]
