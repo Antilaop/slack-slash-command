@@ -27,7 +27,7 @@ server.post('/', upload.array(), function (req, res) {
                         "title": resTitle,
                         "title_link": resLink,
                         "footer": "slack-command",
-                        "footer_icon": "http://icons.iconarchive.com/icons/iconsmind/outline/512/Geek-2-icon.png",
+                        "footer_icon": "http://icons.veryicon.com/ico/System/Sticker%20Pack%202/Terminal.ico",
                         "ts": resTS
                     }
                 ]
