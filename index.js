@@ -11,7 +11,8 @@ server.use(bodyParser.json()); // for parsing application/json
 server.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 server.post('/', upload.array(), function (req, res) {
-    if (req.body.token == process.env.SLACK_TOKEN) {    
+    //if (req.body.token == process.env.SLACK_TOKEN) {  
+    if (1) {      
         var ticketRegex = /T20\d{6}\.\d{4}/g;
         var ticketArray = ticketRegex.exec(req.body.text);
         resTS = Math.round(new Date().getTime()/1000);
